@@ -29,7 +29,3 @@ func Format(c echo.Context, message interface{}, payload interface{}, statusCode
 	}
 	return c.JSON(statusCode, response)
 }
-
-func FormatResponse(c echo.Context, message interface{}, payload interface{}, statusCode int) error {
-	return Format(c, message, payload, statusCode)
-}
