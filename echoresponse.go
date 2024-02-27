@@ -4,16 +4,16 @@ import "github.com/labstack/echo/v4"
 
 type (
 	r struct {
-		Message interface{} `json:"msg"`
+		Message any `json:"msg"`
 	}
 	rWithPayload struct {
 		r
-		Payload interface{} `json:"payload"`
+		Payload any `json:"payload"`
 	}
-	Payload map[string]interface{}
+	Payload map[string]any
 )
 
-func Format(c echo.Context, message interface{}, payload interface{}, statusCode int) error {
+func Format(c echo.Context, message any, payload any, statusCode int) error {
 	var responseMsg string
 	switch msg := message.(type) {
 	case error:
@@ -31,6 +31,6 @@ func Format(c echo.Context, message interface{}, payload interface{}, statusCode
 }
 
 // DEPRECATED: use Format instead
-func FormatResponse(c echo.Context, message interface{}, payload interface{}, statusCode int) error {
+func FormatResponse(c echo.Context, message any, payload any, statusCode int) error {
 	return Format(c, message, payload, statusCode)
 }
